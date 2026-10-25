@@ -25,7 +25,7 @@ public class Produto {
     public Produto() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
