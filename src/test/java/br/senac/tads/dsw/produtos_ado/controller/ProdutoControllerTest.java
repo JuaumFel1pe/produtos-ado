@@ -25,6 +25,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.math.BigDecimal;
+
 @SpringBootTest 
 @AutoConfigureMockMvc 
 @Transactional 
@@ -55,7 +57,7 @@ public class ProdutoControllerTest {
 
     @Test 
     void deveCriarProdutoComSucesso() throws Exception{
-        ProdutoRequestDTO dto = new ProdutoRequestDTO("RTX 5090", 4800.0, categoriaPadrao.getId());
+        ProdutoRequestDTO dto = new ProdutoRequestDTO("RTX 5090", new BigDecimal(4800.0), categoriaPadrao.getId());
 
         String json = objectMapper.writeValueAsString(dto);
 
@@ -73,7 +75,7 @@ public class ProdutoControllerTest {
 
     @Test 
     void deveListarTodosOsProdutos() throws Exception{
-        ProdutoRequestDTO dto = new ProdutoRequestDTO("RTX 5090", 4800.0, categoriaPadrao.getId());
+        ProdutoRequestDTO dto = new ProdutoRequestDTO("RTX 5090", new BigDecimal(4800.0), categoriaPadrao.getId());
         
         Produto produto = new Produto();
         produto.setNome(dto.nome());
@@ -88,7 +90,7 @@ public class ProdutoControllerTest {
 
     @Test 
     void deveBuscarProdutoPorId() throws Exception{
-        ProdutoRequestDTO dto = new ProdutoRequestDTO("RTX 5090", 4800.0, categoriaPadrao.getId());
+        ProdutoRequestDTO dto = new ProdutoRequestDTO("RTX 5090", new BigDecimal(4800.0), categoriaPadrao.getId());
         
         Produto produto = new Produto();
         produto.setNome(dto.nome());
@@ -106,7 +108,7 @@ public class ProdutoControllerTest {
 
     @Test 
     void deveAtualizarProduto() throws Exception{
-        ProdutoRequestDTO dto = new ProdutoRequestDTO("RTX 5090", 4800.0, categoriaPadrao.getId());
+        ProdutoRequestDTO dto = new ProdutoRequestDTO("RTX 5090", new BigDecimal(4800.0), categoriaPadrao.getId());
         
         Produto produto = new Produto();
         produto.setNome(dto.nome());
@@ -114,7 +116,7 @@ public class ProdutoControllerTest {
         produto.setCategoria(categoriaPadrao);
         Produto produtoSalvo = produtoRepository.save(produto);
 
-        ProdutoRequestDTO dtoSalvo = new ProdutoRequestDTO("RTX 3060", 2000.0, produtoSalvo.getCategoria().getId());
+        ProdutoRequestDTO dtoSalvo = new ProdutoRequestDTO("RTX 3060", new BigDecimal(2000.0), produtoSalvo.getCategoria().getId());
 
         String json = objectMapper.writeValueAsString(dtoSalvo);
 
@@ -130,7 +132,7 @@ public class ProdutoControllerTest {
 
     @Test 
     void deveApagarProduto() throws Exception{
-        ProdutoRequestDTO dto = new ProdutoRequestDTO("RTX 5090", 4800.0, categoriaPadrao.getId());
+        ProdutoRequestDTO dto = new ProdutoRequestDTO("RTX 5090", new BigDecimal(4800.0), categoriaPadrao.getId());
         
         Produto produto = new Produto();
         produto.setNome(dto.nome());

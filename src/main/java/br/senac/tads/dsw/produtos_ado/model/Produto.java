@@ -1,5 +1,7 @@
 package br.senac.tads.dsw.produtos_ado.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +18,8 @@ public class Produto {
 
     private String nome;
 
-    private double preco;
+     // Boa prática de mercado: Sempre use BigDecimal para valores monetários!
+    private BigDecimal preco;
 
     @ManyToOne 
     @JoinColumn (name = "categoria_id")
@@ -41,11 +44,11 @@ public class Produto {
         this.nome = nome;
     }
 
-    public double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 
